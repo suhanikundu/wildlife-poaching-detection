@@ -63,6 +63,13 @@ setInterval(ClickConnect, 60000)
 
 Thanks to all the contributors who made this project possible ❤️  
 
-<a href="https://github.com/suhanikundu/wildlife-poaching-detection/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=suhanikundu/wildlife-poaching-detection" />
-</a>
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/suhanikundu"><img src="https://avatars.githubusercontent.com/u/XXXX?v=4" width="100px;" alt=""/><br /><sub><b>Suhani Kundu</b></sub></a></td>
+    <td align="center"><a href="https://github.com/chandikasarkar"><img src="https://avatars.githubusercontent.com/u/YYYY?v=4" width="100px;" alt=""/><br /><sub><b>Chandika Sarkar</b></sub></a></td>
+    <td align="center"><a href="https://github.com/SuprakashRoy04"><img src="https://avatars.githubusercontent.com/u/ZZZZ?v=4" width="100px;" alt=""/><br /><sub><b>Suprakash Roy</b></sub></a></td>
+    <td align="center"><a href="https://github.com/asmitadas16"><img src="https://avatars.githubusercontent.com/u/ZZZZ?v=4" width="100px;" alt=""/><br /><sub><b>Asmita Das</b></sub></a></td>
+    <td align="center"><a href="https://github.com/labanyasaha2004"><img src="https://avatars.githubusercontent.com/u/ZZZZ?v=4" width="100px;" alt=""/><br /><sub><b>Labanya Saha</b></sub></a></td>
+  </tr>
+</table>
