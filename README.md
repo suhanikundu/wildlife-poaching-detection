@@ -3,7 +3,8 @@
 This repository contains code for training and detecting **poachers in the wild** using a custom **YOLOv3** model through webcam or external device.  
 
 
-I have made the `poacher-Implementation.ipynb` file private to avoid misuse. Contact me at 📩 **suhani.kundu2406@.com** for complete access.  
+I have made the `poacher-Implementation.ipynb` file private to avoid misuse. Contact me at 
+📩 **suhani.kundu2406@.com** for complete access.  
 
 ---
 
