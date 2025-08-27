@@ -63,13 +63,38 @@ setInterval(ClickConnect, 60000)
 
 Thanks to all the contributors who made this project possible ❤️  
 
-
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/suhanikundu"><img src="https://avatars.githubusercontent.com/u/XXXX?v=4" width="100px;" alt=""/><br /><sub><b>Suhani Kundu</b></sub></a></td>
-    <td align="center"><a href="https://github.com/chandikasarkar"><img src="https://avatars.githubusercontent.com/u/YYYY?v=4" width="100px;" alt=""/><br /><sub><b>Chandika Sarkar</b></sub></a></td>
-    <td align="center"><a href="https://github.com/SuprakashRoy04"><img src="https://avatars.githubusercontent.com/u/ZZZZ?v=4" width="100px;" alt=""/><br /><sub><b>Suprakash Roy</b></sub></a></td>
-    <td align="center"><a href="https://github.com/asmitadas16"><img src="https://avatars.githubusercontent.com/u/ZZZZ?v=4" width="100px;" alt=""/><br /><sub><b>Asmita Das</b></sub></a></td>
-    <td align="center"><a href="https://github.com/labanyasaha2004"><img src="https://avatars.githubusercontent.com/u/ZZZZ?v=4" width="100px;" alt=""/><br /><sub><b>Labanya Saha</b></sub></a></td>
+    <td align="center">
+      <a href="https://github.com/suhanikundu">
+        <img src="https://avatars.githubusercontent.com/u/134285902?v=4" width="100px;" alt=""/>
+        <br /><sub><b>Suhani Kundu</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/chandikasarkar">
+        <img src="https://avatars.githubusercontent.com/u/148737905?v=4" width="100px;" alt=""/>
+        <br /><sub><b>Chandika Sarkar</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/SuprakashRoy04">
+        <img src="https://avatars.githubusercontent.com/u/162330582?v=4" width="100px;" alt=""/>
+        <br /><sub><b>Suprakash Roy</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/asmitadas16">
+        <img src="https://avatars.githubusercontent.com/u/170555217?v=4" width="100px;" alt=""/>
+        <br /><sub><b>Asmita Das</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/labanyasaha2004">
+        <img src="https://avatars.githubusercontent.com/u/153851425?v=4" width="100px;" alt=""/>
+        <br /><sub><b>Labanya Saha</b></sub>
+      </a>
+    </td>
   </tr>
 </table>
+
