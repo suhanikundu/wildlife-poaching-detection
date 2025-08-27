@@ -63,16 +63,6 @@ setInterval(ClickConnect, 60000)
 
 Thanks to all the contributors who made this project possible ❤️  
 
-<a href="https://github.com/suhanikundu">
-  <img src="https://avatars.githubusercontent.com/u/12345678?v=4" width="60px;" alt="Suhani Kundu"/>
-</a>
-<a href="https://github.com/chandikasarkar">
-  <img src="https://avatars.githubusercontent.com/u/98765432?v=4" width="60px;" alt="Teammate 1"/>
-</a>
-<a href="https://github.com/asmitadas16">
-  <img src="https://avatars.githubusercontent.com/u/19283746?v=4" width="60px;" alt="Teammate 2"/>
-</a>
-<a href="https://github.com/SuprakashRoy04">
   <img src="https://avatars.githubusercontent.com/u/19283746?v=4" width="60px;" alt="Teammate 2"/>
 </a>
 <a href="https://github.com/labanyasaha2004">
