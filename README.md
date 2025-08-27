@@ -1,69 +1,57 @@
-# 🦌 Wildlife Poacher Detection and Alerting System
+# 🦌 Wildlife Poacher Detection and Alerting system in Real-time using Deep Learning  
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)  
-[![YOLOv3](https://img.shields.io/badge/YOLOv3-Object%20Detection-red.svg)](https://pjreddie.com/darknet/yolo/)  
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)  
-[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/)  
+This repository contains code for training and detecting **poachers in the wild** using a custom **YOLOv3** model through webcam or external device.  
 
-A **real-time wildlife poacher detection and alerting system** built using **YOLOv3 (Deep Learning)**.  
-This project uses **custom datasets** and enables monitoring through webcams/external devices to help prevent illegal poaching activities.  
+
+I have made the `poacher-Implementation.ipynb` file private to avoid misuse. Contact me at 📩 **suhani.kundu2406@.com** for complete access.  
 
 ---
 
-## 📖 Table of Contents
-1. [Overview](#-overview)  
-2. [Dataset](#-dataset)  
-3. [Project Structure](#-project-structure)  
-4. [Requirements](#-requirements)  
-5. [Installation](#-installation)  
-6. [Training](#-training)  
-7. [Detection](#-detection)  
-8. [Sample Results](#-sample-results)  
-9. [Resources](#-resources)  
-10. [Google Colab Tips](#-google-colab-tips)  
-11. [Contributing](#-contributing)  
-12. [Contact](#-contact)  
+## 📦 Resources  
+| 📒 Colab Notebook | 📂 Complete Folder |  
+|-------------------|---------------------|  
+| [![Open In Colab]([https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/](https://colab.research.google.com/drive/1XL2NzO_WaWeyQVlVhmnqNG82vjEz008Y)) | [Project Folder](https://drive.google.com/drive/folders/1vvhg2fayBCQngZidOL04CA05Z8gl83tB?usp=sharing) |  
 
 ---
 
-## 📖 Overview
-- Detects **poachers in real-time** using a webcam or external device.  
-- Built on **YOLOv3** trained with a **custom dataset**.  
-- Complete workflow: dataset creation → annotation → training → detection → real-time alerts.  
-- Can be extended for use in **wildlife sanctuaries, national parks, and forest surveillance**.  
+## 💡 Sample Inputs  
+| 1.jpg | 2.jpg | pic1.jpg | pic2.jpg |  
+|-------|-------|----------|----------|  
+| ![input1](sample_images/1.jpg) | ![input2](sample_images/2.jpg) | ![input3](sample_images/pic1.jpg) | ![input4](sample_images/pic2.jpg) |  
 
 ---
 
-## 📂 Dataset
-- Collected from **Google Images** using the [Download All Images](https://chrome.google.com/webstore/detail/download-all-images) Chrome extension.  
-- Annotated with **[LabelImg](https://github.com/heartexlabs/labelImg)** and **CVAT**.  
-- Some pre-labeled datasets are available via [Google Open Images v5](https://storage.googleapis.com/openimages/web/index.html).  
+## 🧠 Sample Outputs  
+| 1.jpg | 2.jpg | pic1.jpg | pic2.jpg |  
+|-------|-------|----------|----------|  
+| ![output1](outputs/1.jpg) | ![output2](outputs/2.jpg) | ![output3](outputs/pic1.jpg) | ![output4](outputs/pic2.jpg) |  
 
 ---
 
-## 📂 Project Structure
-wildlife-poaching-detection/
-│── data/ # Dataset, annotations, obj.data, obj.names
-│── cfg/ # Custom YOLOv3 config files
-│── backup/ # Trained weights saved here
-│── poacher-Implementation.ipynb (private)
-│── sample_images/ # Input images
-│── outputs/ # Detection outputs
-│── README.md
+## 📂 Files Required
+- 📌 Darknet repository  
+- 📌 Labeled custom dataset  
+- 📌 Custom `.cfg` file  
+- 📌 `obj.data` and `obj.names` files  
+- 📌 `train.txt` file (optional: `test.txt`)  
 
+🎥 Tutorial reference: [YouTube Video by The AI Guy](https://www.youtube.com/watch?v=10joRJt39Ns)  
 
----
-
-## ⚙️ Requirements
-- [Darknet](https://github.com/pjreddie/darknet) framework  
-- Custom dataset with annotations  
-- Config files:  
-  - `yolov3-custom.cfg`  
-  - `obj.data`  
-  - `obj.names`  
-- Training file: `train.txt` (and optionally `test.txt`)  
-- Pretrained weights:  
-  - [YOLOv3](https://pjreddie.com/media/files/yolov3.weights)  
-  - [YOLOv3-Tiny](https://pjreddie.com/media/files/yolov3-tiny.weights)  
+🔗 Download YOLO weights:  
+- [YOLOv3 Weights](https://pjreddie.com/media/files/yolov3.weights)  
+- [YOLOv3-Tiny Weights](https://pjreddie.com/media/files/yolov3-tiny.weights)  
 
 ---
+
+## ⚡ Colab Hack ⭐  
+If you’re using free **Google Colab** and face disconnect issues, try this trick:  
+
+👉 Step 1: In Colab, press **CTRL + SHIFT + I** (Inspect element)  
+👉 Step 2: Go to **Console tab** and paste the following code:  
+
+```js
+function ClickConnect(){
+    console.log("Working"); 
+    document.querySelector("colab-toolbar-button#connect").click() 
+}
+setInterval(ClickConnect, 60000)
