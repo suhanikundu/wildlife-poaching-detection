@@ -8,9 +8,9 @@ I have made the `poacher-Implementation.ipynb` file private to avoid misuse. Con
 ---
 
 ## 📦 Resources  
-| 📒 Colab Notebook | 📂 Complete Folder |  
+| 📒 Colab Notebook | 🧠 Complete Folder |  
 |-------------------|---------------------|  
-| [![Open In Colab]([https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/](https://colab.research.google.com/drive/1XL2NzO_WaWeyQVlVhmnqNG82vjEz008Y)) | [Project Folder](https://drive.google.com/drive/folders/1vvhg2fayBCQngZidOL04CA05Z8gl83tB?usp=sharing) |  
+[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/](https://colab.research.google.com/drive/1XL2NzO_WaWeyQVlVhmnqNG82vjEz008Y)) | [Project Folder](https://drive.google.com/drive/folders/1vvhg2fayBCQngZidOL04CA05Z8gl83tB?usp=sharing) |  
 
 ---
 
