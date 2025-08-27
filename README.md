@@ -57,3 +57,10 @@ function ClickConnect(){
     document.querySelector("colab-toolbar-button#connect").click() 
 }
 setInterval(ClickConnect, 60000)
+
+```
+## Contributors
+
+<a href="https://github.com/suhanikundu/wildlife-poaching-detection/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=suhanikundu/wildlife-poaching-detection" />
+</a>
