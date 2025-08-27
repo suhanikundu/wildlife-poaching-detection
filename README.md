@@ -24,7 +24,7 @@ I have made the `poacher-Implementation.ipynb` file private to avoid misuse. Con
 ## 🧠 Sample Outputs  
 | 1.jpg | 2.jpg | pic1.jpg | pic2.jpg |  
 |-------|-------|----------|----------|  
-| ![output1](outputs/1.jpg) | ![output2](outputs/2.jpg) | ![output3](outputs/pic1.jpg) | ![output4](outputs/pic2.jpg) |  
+| ![output1](https://github.com/suhanikundu/wildlife-poaching-detection/blob/main/test_images/Screenshot%202025-08-27%20205859.png) | ![output2](https://github.com/suhanikundu/wildlife-poaching-detection/blob/main/test_images/Screenshot%202025-08-27%20205958.png) | ![output3](https://github.com/suhanikundu/wildlife-poaching-detection/blob/main/test_images/Screenshot%202025-08-27%20210019.png) | ![output4](https://github.com/suhanikundu/wildlife-poaching-detection/blob/main/test_images/Screenshot%202025-08-27%20205724.png) |  
 
 ---
 
