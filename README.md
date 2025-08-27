@@ -90,4 +90,10 @@ Thanks to all the contributors who made this project possible ❤
         <br /><sub><b>Asmita Das</b></sub>
       </a>
     </td>
-
+    <td align="center">
+      <a href="https://github.com/labanyasaha2004">
+        <img src="https://avatars.githubusercontent.com/u/177427463?v=4" width="100px;" alt=""/>
+        <br /><sub><b>Labanya Saha</b></sub>
+      </a>
+    </td>
+    </td>
