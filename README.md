@@ -63,8 +63,3 @@ setInterval(ClickConnect, 60000)
 
 Thanks to all the contributors who made this project possible ❤️  
 
-  <img src="https://avatars.githubusercontent.com/u/19283746?v=4" width="60px;" alt="Teammate 2"/>
-</a>
-<a href="https://github.com/labanyasaha2004">
-  <img src="https://avatars.githubusercontent.com/u/19283746?v=4" width="60px;" alt="Teammate 2"/>
-</a>
