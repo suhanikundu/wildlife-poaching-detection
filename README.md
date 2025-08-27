@@ -1,4 +1,4 @@
-# 🦌 Wildlife Poacher Detection and Alerting system in Real-time using Deep Learning  
+# 🦌 Wildlife Poacher Detection and Alerting system in Real-time
 
 This repository contains code for training and detecting **poachers in the wild** using a custom **YOLOv3** model through webcam or external device.  
 
