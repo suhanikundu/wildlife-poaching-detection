@@ -4,6 +4,7 @@ This repository contains code for training and detecting **poachers in the wild*
 
 
 I have made the `poacher-Implementation.ipynb` file private to avoid misuse. Contact me at 
+
 📩 **suhani.kundu2406@.com** for complete access.  
 
 ---
