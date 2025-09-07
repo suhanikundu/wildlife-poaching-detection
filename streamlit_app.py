@@ -11,6 +11,13 @@ import cv2
 import streamlit as st
 import requests
 
+from twilio.rest import Client
+
+# Twilio credentials (replace with your real ones or load from env vars)
+TWILIO_SID = "AC8ce06b4907512804b1fa6545aa3c4ce5"
+TWILIO_AUTH_TOKEN = "ecadb094687d9a3f3160181140d3d1aa"
+TWILIO_PHONE = "+18723141488"   # Twilio verified phone number
+TO_PHONE = "+919775448481"
 
 # -----------------------------
 # UI Styling
@@ -19,20 +26,203 @@ st.set_page_config(page_title="Wildlife Poacher Detection", page_icon="🦁", la
 st.markdown(
     """
     <style>
-    .reportview-container .main .block-container{padding-top:1rem; padding-bottom:2rem; max-width:1200px;}
-    .big-title {font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;}
-    .subtle {color:#666;}
-    .badge {display:inline-block; padding:4px 10px; border-radius: 999px; background:#eef3ff; color:#223; font-weight:600; font-size:0.8rem;}
-    .alert {background: #fff0f0; border: 1px solid #ffc4c4; color: #ff4d4d; padding: 12px 14px; border-radius: 8px;}
-    /* High-visibility "no poacher" panel: red text on dark background */
-    .ok {background: #1e2533; border: 1px solid #3a4253; color: #ff4d4d; padding: 12px 14px; border-radius: 8px;}
-    .pill {display:inline-block; padding:4px 10px; border-radius:999px; background:#f6f6f9; border:1px solid #e5e7f2; margin-right:8px; font-size:0.8rem; color:#000000;}
-    .section-title {font-size:1.3rem; font-weight:700; color:#EAEFF8; margin:0.5rem 0 0.25rem}
-    .panel {background:#1b2330; border:1px solid #2e3645; color:#eaeff8; padding:12px 14px; border-radius:8px;}
-    .topnav {display:flex; gap:12px; margin:6px 0 12px 0;}
-    .topnav a {color:#cdd7f1; text-decoration:none; font-weight:600;}
-    .topnav a:hover {color:#ffffff;}
-    .footer {margin-top:24px; color:#9aa3b2; font-size:0.9rem; border-top:1px solid #273142; padding-top:12px;}
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+    
+    .reportview-container .main .block-container{
+        padding-top:1rem;
+        padding-bottom:2rem;
+        max-width:1200px;
+    }
+    
+    .stApp {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #1a1f2c 0%, #2d364d 100%);
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    .big-title {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 2.8rem;
+        margin-bottom: 0.5rem;
+        color: white;
+        text-shadow: 
+            -2px -2px 0 #000,
+            2px -2px 0 #000,
+            -2px 2px 0 #000,
+            2px 2px 0 #000;
+        animation: fadeInUp 0.8s ease-out;
+        letter-spacing: 1px;
+    }
+    .big-title .exception {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 2.8rem;
+        margin-bottom: 0.5rem;
+        color: white;
+        text-shadow: 
+            -2px -2px 0 #000,
+            2px -2px 0 #000,
+            -2px 2px 0 #000,
+            2px 2px 0 #000;
+        animation: fadeInUp 0.8s ease-out;
+        letter-spacing: 1px;
+    }
+    
+    .subtle {
+        color: #E3FFF5;
+        animation: fadeInUp 1s ease-out;
+        font-size: 1.1rem;
+        text-align: left;
+        text-shadow: 1px 1px 2px #000;
+        
+    }
+
+    
+    .badge {
+        display: inline-block;
+        padding: 6px 15px;
+        border-radius: 999px;
+        background: rgba(132, 250, 176, 0.15);
+        color: #84fab0;
+        font-weight: 600;
+        font-size: 0.9rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(132, 250, 176, 0.3);
+        animation: slideInLeft 0.6s ease-out;
+    }
+    
+    .alert {
+        background: rgba(255, 77, 77, 0.15);
+        border: 1px solid rgba(255, 77, 77, 0.3);
+        color: #ff4d4d;
+        padding: 16px 20px;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    .ok {
+        background: rgba(132, 250, 176, 0.15);
+        border: 1px solid rgba(132, 250, 176, 0.3);
+        color: #84fab0;
+        padding: 16px 20px;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    .pill {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: rgba(168, 178, 209, 0.15);
+        border: 1px solid rgba(168, 178, 209, 0.3);
+        margin-right: 12px;
+        font-size: 0.9rem;
+        color: #a8b2d1;
+        backdrop-filter: blur(10px);
+        animation: slideInLeft 0.8s ease-out;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #8fd3f4;
+        margin: 1rem 0 0.5rem;
+        animation: fadeInUp 0.8s ease-out;
+    .panel {
+        background: rgba(27, 35, 48, 0.8);
+        border: 1px solid rgba(46, 54, 69, 0.5);
+        color: #eaeff8;
+        padding: 16px 20px;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .topnav {
+        display: flex;
+        gap: 20px;
+        margin: 12px 0 20px 0;
+        padding: 12px 20px;
+        background: rgba(27, 35, 48, 0.6);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    .topnav a {
+        color: #8fd3f4;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .topnav a:hover {
+        background: rgba(143, 211, 244, 0.15);
+        color: #84fab0;
+        transform: translateY(-2px);
+    }
+    
+    .footer {
+        margin-top: 40px;
+        color: #a8b2d1;
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(39, 49, 66, 0.5);
+        padding: 20px 0;
+        text-align: center;
+        animation: fadeInUp 1s ease-out;
+    }
+    
+    /* Custom styling for buttons
+    .stButton button {
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        color: #1a1f2c;
+        font-weight: 600;
+        padding: 0.6em 1.2em;
+        border: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    } */
+    
+    .stButton button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(132, 250, 176, 0.3);
+    }
+    
+    /* Custom styling for selectbox and multiselect */
+    .stSelectbox, .stMultiSelect {
+        background: rgba(27, 35, 48, 0.6);
+        border-radius: 8px;
+        border: 1px solid rgba(132, 250, 176, 0.3);
+    }
+    
+    /* Custom styling for sliders */
+    .stSlider div[data-baseweb="slider"] {
+        background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -50,7 +240,7 @@ if 'authed' not in st.session_state:
 hdr_l, hdr_r = st.columns([6, 2])
 with hdr_l:
     st.markdown("""
-    <div class="big-title">🦁 Wildlife Poacher Detection</div>
+    <div class="big-title"> Wildlife Poacher Detection</div>
     <div class="subtle">Detect a person alongside animals in images or videos. Alerts when a potential poacher is present.</div>
     """, unsafe_allow_html=True)
 with hdr_r:
@@ -61,12 +251,6 @@ with hdr_r:
             st.session_state.authed = False
             st.session_state.user = None
             st.rerun()
-    else:
-        st.write("")
-        if st.button("Sign in", type="primary", key="btn_sign_in_header"):
-            # Show the login section (do not auto-auth)
-            st.session_state.show_login = True
-            st.toast("Please sign in below", icon="🔐")
 
 
 # If not authenticated, show a full login page and exit after render
@@ -74,15 +258,60 @@ if not st.session_state.authed:
     st.markdown("<div id='login'></div>", unsafe_allow_html=True)
     col_login, col_visual = st.columns([6,6])
     with col_login:
-        st.markdown("<div class='section-title'>Sign in</div>", unsafe_allow_html=True)
-        st.write("Enter your name and password to continue.")
+        st.markdown("<div class='section-title'>Sign in</div><div class='subtle'>Enter your name and password to continue.</div> ", unsafe_allow_html=True)
+
+        
+        # Add custom CSS for green input boxes
+        st.markdown("""
+            <style>
+            /* Custom styling for text inputs */
+            .stTextInput input {
+                background-color: #e8f5e9;  /* Light green background */
+                border: 1px solid #81c784;  /* Medium green border */
+            }
+            .stTextInput input:focus {
+                border-color: #4caf50;  /* Darker green on focus */
+                box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);  /* Green glow on focus */
+                color: #333333;  /* Dark text color */
+            }
+            </style>
+        """, unsafe_allow_html=True)
+        
         name = st.text_input("Name", key="login_name")
         password = st.text_input("Password", type="password", key="login_password")
         rem_col, btn_col = st.columns([1,1])
         with rem_col:
             remember = st.checkbox("Remember me", value=True, key="chk_remember_me")
+            st.markdown("""
+            <style>
+            div[data-testid="stCheckbox"] button {
+                background-color: #4CAF50;
+                color: white;
+                border-color: #4CAF50;
+            }
+            div[data-testid="stCheckbox"] button:hover {
+                background-color: #45a049;
+                color: white;
+            }
+            </style>
+            """, unsafe_allow_html=True)
         with btn_col:
-            submit_login = st.button("Sign in", type="primary", key="btn_login_submit")
+            submit_login = st.button("Sign in", type="primary", key="btn_login_submit", use_container_width=True)
+            st.markdown("""
+            <style>
+            div[data-testid="stButton"] button {
+                background-color: #4CAF50;
+                color: white;
+                border-color: #06402B;
+                font-weight: 800;
+                padding: 0.6em 1.2em;
+            }
+            div[data-testid="stButton"] button:hover {
+                background-color: #45a049;
+                color: white;
+            }
+            </style>
+            """, unsafe_allow_html=True)
         if submit_login:
             if name.strip() and password.strip():
                 st.session_state.authed = True
@@ -96,16 +325,26 @@ if not st.session_state.authed:
         st.caption("By continuing you agree to the Terms and Privacy Policy.")
 
     with col_visual:
-        # Show requested image on the login page
-        try:
-            base_dir = os.path.dirname(__file__)
-            img_path = os.path.join(base_dir, 'pexels-jakkel-418831.jpg')
-            if os.path.exists(img_path):
-                st.image(img_path, use_column_width=True, caption="Welcome")
-            else:
-                st.markdown("<div class='panel'>Place 'pexels-jakkel-418831.jpg' in the app folder to show it here.</div>", unsafe_allow_html=True)
-        except Exception:
-            st.markdown("<div class='panel'>Login image could not be loaded.</div>", unsafe_allow_html=True)
+        # Set background image via CSS
+        base_dir = os.path.dirname(__file__)
+        img_path = os.path.join(base_dir, "92fb2ae1d076f6bbe6a710a7646533a2.jpg")
+        if os.path.exists(img_path):
+            st.markdown(
+                f"""
+                <style>
+                .stApp {{
+                    background-image: url('data:image/jpg;base64,{base64.b64encode(open(img_path, "rb").read()).decode()}');
+                    background-size: cover;
+                    background-position: center;
+                    background-color: rgba(0, 0, 0, 0.3); /* Add semi-transparent black overlay */
+                    background-blend-mode: multiply; /* Blend with background image */
+                }}
+                </style>
+                """,
+                unsafe_allow_html=True
+            )
+        else:
+            st.markdown("<div class='panel'>Place 'pexels-jakkel-418831.jpg' in the app folder to use as background.</div>", unsafe_allow_html=True)
 
     st.stop()
 
@@ -142,6 +381,25 @@ def play_beep():
     """
     st.components.v1.html(html, height=0)
 
+def send_alert_call():
+    try:
+        client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
+        call = client.calls.create(
+            to=TO_PHONE,
+            from_=TWILIO_PHONE,
+            twiml="""
+        <Response>
+            <Say voice="alice" language="en-US">
+                🚨 Poacher has been detected in the surveillance area. Please take immediate action.
+            </Say>
+        </Response>
+    """
+        )
+        st.toast("📞 Call triggered successfully", icon="📞")
+        return call.sid
+    except Exception as e:
+        st.error(f"Twilio call failed: {e}")
+        return None
 
 # -----------------------------
 # Detection backends
@@ -347,6 +605,18 @@ ANIMAL_NAME_SET = set(a.lower() for a in selected_animals)
 
 # Session info (collapsed to reduce clutter)
 with st.expander("Session info", expanded=False):
+    # Add green translucent background styling
+    st.markdown("""
+        <style>
+        .streamlit-expanderContent {
+            background-color: rgba(0, 255, 0, 0.5) !important;
+            border-radius: 8px;
+            padding: 10px;
+            backdrop-filter: blur(5px);
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    
     col_si1, col_si2, col_si3 = st.columns(3)
     with col_si1:
         st.markdown(f"**Backend**: {backend}")
@@ -355,6 +625,39 @@ with st.expander("Session info", expanded=False):
     with col_si3:
         model_name_disp = ultra_model_name if backend=='Ultralytics YOLOv8' else os.path.basename(dnn_weights)
         st.markdown(f"**Model**: {model_name_disp}")
+
+# -----------------------------
+# Set a beautiful background image for the main page
+# -----------------------------
+bg_img_path = os.path.join(os.path.dirname(__file__), "indian-rhinoceros-asia-indian-rhino-one-horned-rhinoceros-unicornis-with-green-grass.jpg")
+if os.path.exists(bg_img_path):
+    with open(bg_img_path, "rb") as f:
+        bg_img_bytes = f.read()
+    bg_img_b64 = base64.b64encode(bg_img_bytes).decode()
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background: linear-gradient(135deg, #1a1f2c 0%, #2d364d 100%);
+            background-image: url("data:image/jpg;base64,{bg_img_b64}");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+        }}
+        /* Optional: add a subtle overlay for readability */
+        .stApp::before {{
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(20, 24, 36, 0.55);
+            z-index: 0;
+            pointer-events: none;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 # -----------------------------
 # Input mode: Image or Video (Tabs)
@@ -428,6 +731,7 @@ with tab_img:
                 st.toast("Poacher Detected", icon="🚨")
                 if play_beep_on_alert:
                     play_beep()
+                send_alert_call()
                 # Overlay big alert text on the image for clarity
                 cv2.putText(vis, 'Poacher Detected', (20, 45), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3, cv2.LINE_AA)
             else:
@@ -544,6 +848,7 @@ with tab_vid:
             st.toast("Poacher Detected in video", icon="🚨")
             if play_beep_on_alert:
                 play_beep()
+            send_alert_call()
         else:
             st.markdown('<div class="ok"><b>✅ No poacher detected</b> across processed frames.</div>', unsafe_allow_html=True)
 
