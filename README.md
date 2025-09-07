@@ -77,21 +77,14 @@ Thanks to all the contributors who made this project possible ❤
         <img src="https://avatars.githubusercontent.com/u/122215135?v=4" width="100px;" alt=""/>
         <br /><sub><b>Chandika Sarkar</b></sub>
       </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/asmitadas16">
-        <img src="https://avatars.githubusercontent.com/u/201049680?v=4" width="100px;" alt=""/>
-        <br /><sub><b>Asmita Das</b></sub>
-      </a>
-    </td>
     <td align="center">
       <a href="https://github.com/SuprakashRoy04">
         <img src="https://avatars.githubusercontent.com/u/122284717?v=4" width="100px;" alt=""/>
         <br /><sub><b>Suprakash Roy</b></sub>
       </a>
     <td align="center">
-      <a href="https://github.com/labanyasaha2004">
-        <img src="https://avatars.githubusercontent.com/u/177427463?v=4" width="100px;" alt=""/>
+      <a href="https://github.com/anik2OO5">
+        <img src="https://avatars.githubusercontent.com/u/179361788?v=4" width="100px;" alt=""/>
         <br /><sub><b>Labanya Saha</b></sub>
       </a>
     </td>
