@@ -16,8 +16,8 @@ from twilio.rest import Client
 # Twilio credentials (replace with your real ones or load from env vars)
 TWILIO_SID = "AC8ce06b4907512804b1fa6545aa3c4ce5"
 TWILIO_AUTH_TOKEN = "ecadb094687d9a3f3160181140d3d1aa"
-TWILIO_PHONE = "+18723141488"   # Twilio verified phone number
-TO_PHONE = "+919775448481"
+TWILIO_PHONE = "+187*********"   # Twilio verified phone number
+TO_PHONE = "+9197***********"
 
 # -----------------------------
 # UI Styling
